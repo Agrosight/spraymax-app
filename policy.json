@@ -1,0 +1,32 @@
+{
+  "advancedSecurityOverrides": {
+    "developerSettings": "DEVELOPER_SETTINGS_ALLOWED"
+  },
+  "applications": [
+    {
+      "packageName": "br.com.farmgo.arbomonitor",
+      "installType": "KIOSK",
+      "autoUpdateMode": "AUTO_UPDATE_HIGH_PRIORITY"
+    }
+  ],
+  "deviceConnectivityManagement": {
+    "configureWifi": "ALLOW_CONFIGURING_WIFI",
+    "usbDataAccess": "ALLOW_USB_DATA_TRANSFER"
+  },
+  "locationMode": "LOCATION_ENFORCED",
+  "statusReportingSettings": {
+    "applicationReportsEnabled": true,
+    "applicationReportingSettings": {
+      "includeRemovedApps": false
+    },
+    "commonCriteriaModeEnabled": true,
+    "deviceSettingsEnabled": true,
+    "displayInfoEnabled": true,
+    "hardwareStatusEnabled": true,
+    "memoryInfoEnabled": true,
+    "networkInfoEnabled": true,
+    "powerManagementEventsEnabled": true,
+    "softwareInfoEnabled": true,
+    "systemPropertiesEnabled": true
+  }
+}
