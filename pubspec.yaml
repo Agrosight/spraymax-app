@@ -71,6 +71,7 @@ dependencies:
   material_symbols_icons: ^4.2784.0
   carousel_slider: ^5.0.0
   dropdown_search: ^6.0.1
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -104,6 +105,7 @@ flutter:
   assets:
     - assets/
     - assets/analise_ovo/
+    - ./.env
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

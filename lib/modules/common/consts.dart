@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class LoadingStatus {
   static const String buscando = "buscando";
@@ -59,15 +60,10 @@ const String imageAnaliseOvo3 = "assets/analise_ovo/analise_ovo_passo_3.png";
 const String imageAnaliseOvo4 = "assets/analise_ovo/analise_ovo_passo_4.png";
 
 // // Server
-const urlSync = 'arbomonitor.farmgoservices.com';
+String urlSync =  dotenv.get('URL_SYNC');
 // const urlSync = 'hom.farmgo.com.br';
-const port = null;
-const httpSheme = "https";
+int? port = (dotenv.get('PORT') != 'null') ? dotenv.getInt('PORT') : null;
+String httpSheme = dotenv.get('HTTP_SCHEME');
 
-// // // Local
-// const urlSync =
-//       '192.168.15.7';// '192.168.1.142'; //'192.168.18.245'; // Trocar pelo seu IP do Wi-Fi
-// const port = 8008;
-// const httpSheme = 'http';
 
-const String mapboxAccessToken = String.fromEnvironment("PUBLIC_ACCESS_TOKEN");
+ String mapboxAccessToken = dotenv.get("PUBLIC_ACCESS_TOKEN");
