@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
 import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -93,7 +93,7 @@ class _FotoWidgetState extends State<FotoWidget> {
       centerTitle: true,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
-        color: primaryColor,
+        color: CustomColor.primaryColor,
         onPressed: () async {
           Navigator.of(context).pop();
         },

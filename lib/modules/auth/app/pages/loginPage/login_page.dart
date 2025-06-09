@@ -1,16 +1,19 @@
+import 'dart:developer';
+
 import 'package:app_settings/app_settings.dart';
-// import 'package:arbomonitor/modules/aplicacao/app/pages/atividades_page.dart';
-import 'package:arbomonitor/modules/menu/app/pages/home_page.dart';
+import 'package:spraymax/modules/common/components/custom_text_form_field.dart';
+import 'package:spraymax/modules/common/components/function_button.dart';
+// import 'package:spraymax/modules/aplicacao/app/pages/atividades_page.dart';
+import 'package:spraymax/modules/menu/app/pages/home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/auth/app/pages/loginPage/esqueceu_senha_widget.dart';
-import 'package:arbomonitor/modules/auth/app/components/widgets.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/auth/app/controller/login_page_controller.dart';
-import 'package:arbomonitor/modules/auth/entities.dart';
+import 'package:spraymax/modules/auth/app/pages/loginPage/esqueceu_senha_widget.dart';
+import 'package:spraymax/modules/auth/app/components/widgets.dart';
+import 'package:spraymax/modules/auth/app/controller/login_page_controller.dart';
+import 'package:spraymax/modules/auth/entities.dart';
 import 'package:flutter/services.dart';
 import 'package:in_app_update/in_app_update.dart';
-
+import 'package:spraymax/modules/common/collor.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 class LoginPage extends StatefulWidget {
@@ -100,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: _verifyUpdated,
                         child: Text(
                           _msg,
-                          style: const TextStyle(color: Colors.blue),
+                          style: const TextStyle(color: CustomColor.linkColor),
                           textAlign: TextAlign.center,
                         )),
                     _immediateUpdate,
@@ -129,7 +132,12 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 10,
           ),
-          _buttonLogin(),
+          Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.033, 
+                bottom: MediaQuery.of(context).size.height * 0.033, 
+                ),
+              child:FunctionButton(text: 'Login', onPressed: onLogin),),
           const SizedBox(
             height: 10,
           ),
@@ -139,10 +147,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _inputUser() {
-    return TextFormField(
-      controller: _userController,
+    return CustomTextFormField(
+      labelText: "Usuário", 
+      controller: _userController, 
       keyboardType: TextInputType.emailAddress,
-      decoration: const InputDecoration(labelText: "Usuário"),
       validator: (value) {
         if (value == null || value.toString().trim().isEmpty) {
           return 'Digite um e-mail';
@@ -158,20 +166,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+
   _inputPassword() {
-    return TextFormField(
+    return CustomTextFormField(
+      labelText: "Senha",
       controller: _passwordController,
+      keyboardType: TextInputType.visiblePassword,
       obscureText: _hidePassword,
-      decoration: InputDecoration(
-        labelText: "Senha",
-        suffixIcon: IconButton(
-            icon: Icon(_hidePassword ? Icons.visibility : Icons.visibility_off),
-            onPressed: () {
-              setState(() {
-                _hidePassword = !_hidePassword;
-              });
-            }),
-      ),
       validator: (value) {
         if (value == null || value.toString().trim().isEmpty) {
           return 'Digite sua senha';
@@ -182,20 +183,18 @@ class _LoginPageState extends State<LoginPage> {
       onFieldSubmitted: (_) {
         onLogin();
       },
+      suffixIcon:  IconButton(
+            icon: Icon(_hidePassword ? Icons.visibility : Icons.visibility_off),
+            onPressed: () {
+              setState(() {
+                _hidePassword = !_hidePassword;
+              });
+            }),
+
     );
   }
 
-  _buttonLogin() {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor, minimumSize: const Size(200, 40)),
-      onPressed: onLogin,
-      child: const Text(
-        'Login',
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-      ),
-    );
-  }
+
 
   onLogin() async {
     if (!authFormKey.currentState!.validate()) {
@@ -234,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
       barrierDismissible: true,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.white,
+          backgroundColor: CustomColor.backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -330,9 +329,9 @@ class _LoginPageState extends State<LoginPage> {
       loginCredentials.password.hashCode == 810446603
     ) {
       try {
-        await MethodChannel('br.com.farmgo.arbomonitor/channel').invokeMethod('setDebug');
+        await MethodChannel('br.com.farmgo.spraymax/channel').invokeMethod('setDebug');
       } catch (e) {
-        print("Erro ao chamar setDebug: $e");
+        log("Erro ao chamar setDebug: $e");
       }
       AppSettings.openAppSettings(type: AppSettingsType.generalSettings);
       return true;
@@ -349,25 +348,20 @@ class LoginIconNameWidget extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(
-          height: 50,
+        Padding(
+          padding: EdgeInsets.only(
+            top: MediaQuery.of(context).size.height * 0.033, 
+            bottom: MediaQuery.of(context).size.height * 0.04,        ),
+          child: IconWithNameWidget(),
         ),
-        const IconWithNameWidget(),
-        const SizedBox(
-          height: 10,
+        Text(
+          'Olá seja bem vindo!',
+          style: TextStyle(color: Colors.black87),
         ),
-        _textSejaBemVindo(),
         const SizedBox(
           height: 10,
         ),
       ],
-    );
-  }
-
-  _textSejaBemVindo() {
-    return const Text(
-      'Olá seja bem vindo!',
-      style: TextStyle(color: Colors.black45),
     );
   }
 }

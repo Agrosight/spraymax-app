@@ -18,7 +18,7 @@ Spraymax-App Project.
 
 Criar arquivo `.env`:
 
-URL_SYNC=$url
-PORT=$pot
-HTTP_SCHEME=$httpScheme
-UBLIC_ACCESS_TOKEN=$tokenMapBox
+URL_SYNC=$url<br>
+PORT=$pot<br>
+HTTP_SCHEME=$httpScheme<br>
+PUBLIC_ACCESS_TOKEN=$tokenMapBox<br>

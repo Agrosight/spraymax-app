@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-// import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+// import 'package:spraymax/modules/common/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-import 'package:arbomonitor/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
 import 'package:provider/provider.dart';
 
 class QrScanWidget extends StatefulWidget {

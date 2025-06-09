@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:arbomonitor/modules/di/di.dart';
-import 'package:arbomonitor/modules/auth/entities.dart';
+import 'package:spraymax/modules/di/di.dart';
+import 'package:spraymax/modules/auth/entities.dart';
 
 part 'login_page_controller.g.dart';
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
 
 class EstacaoWidget extends StatefulWidget {
   const EstacaoWidget({super.key});

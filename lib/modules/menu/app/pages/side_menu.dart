@@ -2,24 +2,22 @@
 
 import 'dart:convert';
 
-import 'package:arbomonitor/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
-import 'package:arbomonitor/modules/aplicacao/app/pages/aplicacoes_page.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/aplicacoes_page.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 
-import 'package:arbomonitor/modules/appConfig/app_config.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/armadilhas_ovo_page.dart';
-import 'package:arbomonitor/modules/auth/app/pages/loginPage/login_page.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/menu/app/controller/side_menu_controller.dart';
-import 'package:arbomonitor/modules/menu/app/pages/perfil_page.dart';
-import 'package:arbomonitor/modules/menu/app/pages/configuracoes_page.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/vistorias_page.dart';
+import 'package:spraymax/modules/appConfig/app_config.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/armadilhas_ovo_page.dart';
+import 'package:spraymax/modules/auth/app/pages/loginPage/login_page.dart';
+import 'package:spraymax/modules/common/consts.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/menu/app/controller/side_menu_controller.dart';
+import 'package:spraymax/modules/menu/app/pages/perfil_page.dart';
+import 'package:spraymax/modules/menu/app/pages/configuracoes_page.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/vistorias_page.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({super.key});

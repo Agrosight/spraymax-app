@@ -1,10 +1,10 @@
-import 'package:arbomonitor/modules/common/errors.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
+import 'package:spraymax/modules/common/errors.dart';
+import 'package:spraymax/modules/common/utils.dart';
 import 'package:mobx/mobx.dart';
 
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/di/di.dart';
-import 'package:arbomonitor/modules/menu/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
+import 'package:spraymax/modules/di/di.dart';
+import 'package:spraymax/modules/menu/entities.dart';
 
 part 'home_page_controller.g.dart';
 

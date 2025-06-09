@@ -1,7 +1,6 @@
 import 'package:app_settings/app_settings.dart';
-import 'package:arbomonitor/modules/menu/app/pages/side_menu.dart';
+import 'package:spraymax/modules/menu/app/pages/side_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
 
 class ConfiguracoesPage extends StatefulWidget {
   const ConfiguracoesPage({super.key});

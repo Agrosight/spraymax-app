@@ -1,6 +1,6 @@
-import 'package:arbomonitor/modules/common/errors.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/repositories.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
+import 'package:spraymax/modules/common/errors.dart';
+import 'package:spraymax/modules/vistoriaResidencial/repositories.dart';
+import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
 
 class FetchVistoriasUseCase {
   VistoriaRepository vistoriaRepository;

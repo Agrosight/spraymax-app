@@ -1,14 +1,11 @@
 import 'dart:convert';
 
-import 'package:arbomonitor/modules/auth/usecases.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/menu/app/pages/side_menu.dart';
-import 'package:arbomonitor/modules/menu/usecases.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/vistorias_page.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/menu/app/pages/side_menu.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/vistorias_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-// import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/menu/app/controller/perfil_page_controller.dart';
+import 'package:spraymax/modules/menu/app/controller/perfil_page_controller.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -298,8 +295,8 @@ class _PerfilPageState extends State<PerfilPage> {
   }
 
   _passwordSection() {
-    bool _obscureNewPassword = true;
-    bool _obscureConfirmPassword = true;
+    bool obscureNewPassword = true;
+    bool obscureConfirmPassword = true;
 
     return StatefulBuilder(
       builder: (context, setState) {
@@ -311,17 +308,17 @@ class _PerfilPageState extends State<PerfilPage> {
               textInput(
                 controller: newPasswordController,
                 hintText: "Nova Senha",
-                obscureText: _obscureNewPassword,
+                obscureText: obscureNewPassword,
                 readOnly: false,
                 enable: true,
                 suffixIcon: IconButton(
                   icon: Icon(
                     size: 24,
-                    _obscureNewPassword ? Icons.visibility_off : Icons.visibility,
+                    obscureNewPassword ? Icons.visibility_off : Icons.visibility,
                   ),
                   onPressed: () {
                     setState(() {
-                      _obscureNewPassword = !_obscureNewPassword;
+                      obscureNewPassword = !obscureNewPassword;
                     });
                   },
                 ),
@@ -331,17 +328,17 @@ class _PerfilPageState extends State<PerfilPage> {
               textInput(
                 controller: confirmPasswordController,
                 hintText: "Confirmar Senha",
-                obscureText: _obscureConfirmPassword,
+                obscureText: obscureConfirmPassword,
                 readOnly: false,
                 enable: true,
                 suffixIcon: IconButton(
                   icon: Icon(
                     size: 24,
-                    _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                    obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
                   ),
                   onPressed: () {
                     setState(() {
-                      _obscureConfirmPassword = !_obscureConfirmPassword;
+                      obscureConfirmPassword = !obscureConfirmPassword;
                     });
                   },
                 ),
@@ -361,7 +358,7 @@ class _PerfilPageState extends State<PerfilPage> {
       //   return "Campo obrigatório";
       // }
       if (value != null && value.isNotEmpty) {
-        if (value!.length < 8) {
+        if (value.length < 8) {
           return "A senha deve ter pelo menos 8 caracteres";
         }
         if (!RegExp(r'[A-Z]').hasMatch(value)) {
@@ -414,100 +411,204 @@ class _PerfilPageState extends State<PerfilPage> {
     };
   }
 
-
-  _bottomButtons() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          TextButton(
-            onPressed: () async {
-              bool hasPendingChanges = perfilPageController.hasPendingChanges(
-                email: emailController.text,
-                phone: phoneController.text,
-                newPassword: newPasswordController.text,
-                confirmPassword: confirmPasswordController.text,
-                codeAreaList: selectedCodeArea,
-              );
-
-              if (!hasPendingChanges) {
-                Navigator.pop(context);
-                return;
-              }
-
-               final result = await showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    shadowColor: Colors.black,
-                    elevation: 10,
-                    title: const Text(
-                      "Cancelar Edição",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    content: const Text(
-                      "Você tem alterações pendentes. Deseja cancelar?",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    actionsPadding: EdgeInsets.zero,
-                    actions: [
-                      Row(
-                        children: [
-                          _dialogActionCancelUpdates(),
-                          _dialogActionSaveUpdates(),
-                        ]
-                      ),
-                    ],
-                  );
-                },
-               );
-              if (result == "salvar") {
-                // Salvar as alterações
-                perfilPageController.updateUserName(confirmPasswordController.text);
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => const VistoriasPage(),
-                  ),);
-                refreshPage();
-              }
-              else if (result == "cancelar") {
-                Navigator.of(context).pop();
-              }
-            },
-            child: const Text(
-              "Cancelar",
-              style: TextStyle(fontSize: 20, color: Colors.blue,),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              // lógica para salvar
-            },
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.white,
-            ),
-            child: const Text(
-              "Salvar", 
-              style: TextStyle(fontSize: 20, color: Colors.blue),
-            ),
-        ) ,
-        ],
-      ),
+//TODO Verificar se a função está funcionando corretamente
+  bool hasPendingChanges() {
+    return perfilPageController.hasPendingChanges(
+      email: emailController.text,
+      phone: phoneController.text,
+      newPassword: newPasswordController.text,
+      confirmPassword: confirmPasswordController.text,
+      codeAreaList: selectedCodeArea,
     );
+  }
+_bottomButtons() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TextButton(
+          onPressed: () async {
+            bool hasPendingChanges = perfilPageController.hasPendingChanges(
+              email: emailController.text,
+              phone: phoneController.text,
+              newPassword: newPasswordController.text,
+              confirmPassword: confirmPasswordController.text,
+              codeAreaList: selectedCodeArea,
+            );
+
+            if (!hasPendingChanges) {
+              if (!mounted) return;
+              Navigator.pop(context);
+              return;
+            }
+
+            final result = await showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  shadowColor: Colors.black,
+                  elevation: 10,
+                  title: const Text(
+                    "Cancelar Edição",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  content: const Text(
+                    "Você tem alterações pendentes. Deseja cancelar?",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  actionsPadding: EdgeInsets.zero,
+                  actions: [
+                    Row(
+                      children: [
+                        _dialogActionCancelUpdates(),
+                        _dialogActionSaveUpdates(),
+                      ]
+                    ),
+                  ],
+                );
+              },
+            );
+
+            if (!mounted) return;
+
+            if (result == "salvar") {
+              perfilPageController.updateUserName(confirmPasswordController.text);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const VistoriasPage(),
+                ),
+              );
+              refreshPage();
+            } else if (result == "cancelar") {
+              Navigator.of(context).pop();
+            }
+          },
+          child: const Text(
+            "Cancelar",
+            style: TextStyle(fontSize: 20, color: Colors.blue),
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            // lógica para salvar
+          },
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.white,
+          ),
+          child: const Text(
+            "Salvar",
+            style: TextStyle(fontSize: 20, color: Colors.blue),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+  // _bottomButtons() {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         TextButton(
+  //           onPressed: () async {
+  //             bool hasPendingChanges = perfilPageController.hasPendingChanges(
+  //               email: emailController.text,
+  //               phone: phoneController.text,
+  //               newPassword: newPasswordController.text,
+  //               confirmPassword: confirmPasswordController.text,
+  //               codeAreaList: selectedCodeArea,
+  //             );
+
+  //             if (!hasPendingChanges) {
+  //               Navigator.pop(context);
+  //               return;
+  //             }
+
+  //              final result = await showDialog(
+  //               context: context,
+  //               builder: (BuildContext context) {
+  //                 return AlertDialog(
+  //                   backgroundColor: Colors.white,
+  //                   shape: RoundedRectangleBorder(
+  //                     borderRadius: BorderRadius.circular(10),
+  //                   ),
+  //                   shadowColor: Colors.black,
+  //                   elevation: 10,
+  //                   title: const Text(
+  //                     "Cancelar Edição",
+  //                     textAlign: TextAlign.center,
+  //                     style: TextStyle(
+  //                       fontSize: 20,
+  //                       fontWeight: FontWeight.bold,
+  //                     ),
+  //                   ),
+  //                   content: const Text(
+  //                     "Você tem alterações pendentes. Deseja cancelar?",
+  //                     textAlign: TextAlign.center,
+  //                     style: TextStyle(fontSize: 16),
+  //                   ),
+  //                   actionsPadding: EdgeInsets.zero,
+  //                   actions: [
+  //                     Row(
+  //                       children: [
+  //                         _dialogActionCancelUpdates(),
+  //                         _dialogActionSaveUpdates(),
+  //                       ]
+  //                     ),
+  //                   ],
+  //                 );
+  //               },
+  //              );
+  //             if (result == "salvar") {
+  //               // Salvar as alterações
+  //               perfilPageController.updateUserName(confirmPasswordController.text);
+  //               Navigator.pushReplacement(
+  //                 context, 
+  //                 MaterialPageRoute(
+  //                   builder: (context) => const VistoriasPage(),
+  //                 ),);
+  //               refreshPage();
+  //             }
+  //             else if (result == "cancelar") {
+  //               Navigator.of(context).pop();
+  //             }
+  //           },
+  //           child: const Text(
+  //             "Cancelar",
+  //             style: TextStyle(fontSize: 20, color: Colors.blue,),
+  //           ),
+  //         ),
+  //         TextButton(
+  //           onPressed: () {
+  //             // lógica para salvar
+  //           },
+  //           style: TextButton.styleFrom(
+  //             backgroundColor: Colors.white,
+  //           ),
+  //           child: const Text(
+  //             "Salvar", 
+  //             style: TextStyle(fontSize: 20, color: Colors.blue),
+  //           ),
+  //       ) ,
+  //       ],
+  //     ),
+  //   );
     
 
-  }
+  // }
 
   _showEditNameDialog() {
     showDialog(

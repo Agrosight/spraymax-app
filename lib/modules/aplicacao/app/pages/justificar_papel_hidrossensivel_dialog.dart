@@ -1,4 +1,4 @@
-import 'package:arbomonitor/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
 import 'package:flutter/material.dart';
 
 class JustificarPapelHidrossensivelWidget extends StatefulWidget {

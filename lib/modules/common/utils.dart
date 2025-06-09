@@ -1,10 +1,10 @@
 // import 'dart:convert';
 import 'dart:io';
 
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/entities.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/armadilhaOvo/entities.dart';
+import 'package:spraymax/modules/common/entities.dart';
+import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
 import 'package:flutter/material.dart';
 import 'package:android_id/android_id.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -12,7 +12,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' as mapbox;
 
 import 'package:path_provider/path_provider.dart';
-import 'package:arbomonitor/modules/di/di.dart';
+import 'package:spraymax/modules/di/di.dart';
 
 Future<String> getDeviceId() async {
   String? deviceId;
@@ -39,9 +39,10 @@ Future<void> clearAllData() async {
 }
 
 MaterialColor getMaterialColor(Color color) {
-  final int red = color.red;
-  final int green = color.green;
-  final int blue = color.blue;
+  final int red = (color.r * 255).round();
+  final int green = (color.g * 255).round();
+  final int blue = (color.b * 255).round();
+  final int alpha = (color.a * 255).round();
 
   final Map<int, Color> shades = {
     50: Color.fromRGBO(red, green, blue, .1),
@@ -55,8 +56,12 @@ MaterialColor getMaterialColor(Color color) {
     800: Color.fromRGBO(red, green, blue, .9),
     900: Color.fromRGBO(red, green, blue, 1),
   };
+  final int argb = (alpha << 24) |
+                 ((color.r * 255).round() << 16) |
+                 ((color.g * 255).round() << 8) |
+                 ((color.b * 255).round());
 
-  return MaterialColor(color.value, shades);
+  return MaterialColor(argb, shades);
 }
 
 PontoRota positionToPontoRota(Position position, int index) {

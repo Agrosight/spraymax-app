@@ -1,4 +1,4 @@
-import 'package:arbomonitor/modules/common/entities.dart';
+import 'package:spraymax/modules/common/entities.dart';
 
 class ArmadilhaOvo {
   int id = 0;

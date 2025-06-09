@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import 'package:arbomonitor/modules/di/di.dart';
+import 'package:spraymax/modules/di/di.dart';
 
 part 'splash_page_controller.g.dart';
 

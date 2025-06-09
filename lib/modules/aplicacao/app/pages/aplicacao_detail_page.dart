@@ -1,18 +1,14 @@
-// import 'package:flutter/foundation.dart';
-// ignore_for_file: use_build_context_synchronously
-
-import 'package:arbomonitor/modules/aplicacao/app/pages/foto_hidrossenssivel_view_widget.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/aplicacao/app/pages/send_atividade_dialog.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/foto_hidrossenssivel_view_widget.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/send_atividade_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:hive/hive.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/common/consts.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' as mapbox;
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -21,13 +17,13 @@ import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 import 'package:image/image.dart' as img;
 
-import 'package:arbomonitor/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
-import 'package:arbomonitor/modules/aplicacao/app/pages/bluetooth_dialog.dart';
-import 'package:arbomonitor/modules/aplicacao/app/pages/estacao_dialog.dart';
-import 'package:arbomonitor/modules/aplicacao/app/pages/justificar_fluxometro_dialog.dart';
-import 'package:arbomonitor/modules/aplicacao/app/pages/justificar_papel_hidrossensivel_dialog.dart';
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
+import 'package:spraymax/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/bluetooth_dialog.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/estacao_dialog.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/justificar_fluxometro_dialog.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/justificar_papel_hidrossensivel_dialog.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/common/utils.dart';
 
 class AplicacaoDetailPage extends StatefulWidget {
   const AplicacaoDetailPage(
@@ -43,7 +39,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
   bool deviceSyncDialogStateLoaded = false;
   bool _showTimeSpeedWidget = false;
   bool _showWeatherWidget = false;
-  bool _buttonWatherActivated = true;
+  final bool _buttonWatherActivated = true;
 
   Widget _map = Container();
   bool _mapLoaded = false;
@@ -92,7 +88,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
             if (_showTimeSpeedWidget)
               Positioned.fill(
                 child: Container(
-                  color: Colors.white.withOpacity(0.97),
+                  color: Colors.white.withValues(alpha:0.97),
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -236,11 +232,11 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
                   TrabalhoAplicacaoStatus.iniciar)
           ? IconButton(
               icon: const Icon(Icons.arrow_back),
-              color: primaryColor,
+              color: CustomColor.primaryColor,
               onPressed: () async {
                 _stopLocationTracking();
                 atividadesPageController.loadAtividadesAplicacaoList();
-                Navigator.of(this.context).pop();
+                Navigator.of(context).pop();
                 if (atividadesPageController.hasDadoFluxometro) {
                   _showAlertDialog(
                       "Atividade em andamento", "Dados de fluxômetro salvos.");
@@ -1170,12 +1166,12 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
             icon: Icon(Icons.photo, color: Colors.blue, size: 40),
             onPressed: () {
               if (atividadesPageController.fotosCount.value == 0) {
-                showAlertDialog(this.context, "Sem foto",
+                showAlertDialog(context, "Sem foto",
                     "Não foi possível visualizar fotos.\nNenhuma foto registrada.");
                 return;
               }
               atividadesPageController.fotoViewIndex = 0;
-              Navigator.of(this.context).push(
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => Provider(
                     create: (context) => atividadesPageController,
@@ -1319,9 +1315,9 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
           if (!_isCameraInitialized) {
             return;
           }
-          this.context.loaderOverlay.show();
+          context.loaderOverlay.show();
           await takePhoto();
-          this.context.loaderOverlay.hide();
+          context.loaderOverlay.hide();
           setState(() {});
         },
         child: const Icon(Icons.camera_alt, color: Colors.white, size: 40,),
@@ -1353,7 +1349,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openFluxometroDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1389,7 +1385,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             if (atividadesPageController.configurararAtividadeAplicacao) {
               _openJustificarFluxometroDialog();
               setState(() {});
@@ -1409,7 +1405,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: rightButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             _openBluetoothDialog();
           },
           child: const Text('Sim',
@@ -1421,7 +1417,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openJustificarFluxometroDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return const JustificarFluxometroWidget();
@@ -1443,7 +1439,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openEstacaoDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1503,7 +1499,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             if (atividadesPageController.configurararAtividadeAplicacao) {
               atividadesPageController.configurararAtividadeAplicacao = false;
               atividadesPageController.atividadeAndamentoStatus.value =
@@ -1528,7 +1524,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: rightButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             if (atividadesPageController.configurararAtividadeAplicacao) {
               atividadesPageController.configurararAtividadeAplicacao = false;
               atividadesPageController.atividadeAndamentoStatus.value =
@@ -1546,7 +1542,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _estacaoDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return Provider(
@@ -1591,7 +1587,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openIniciarAtividadeDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1627,7 +1623,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
           },
           child: const Text('Não',
           style: TextStyle(fontSize: 20, color: Colors.blue,)),
@@ -1646,7 +1642,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
             atividadesPageController.showMessage = false;
             atividadesPageController.atividadeAndamentoStatus.value =
                 TrabalhoAplicacaoStatus.andamento;
-            Navigator.pop(this.context);
+            Navigator.pop(context);
             atividadesPageController.iniciarAtividade(userLocation);
             // timerRotaTest = Timer.periodic(
             //     const Duration(milliseconds: 3000), updateRotaTest);
@@ -1687,7 +1683,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openConcluirRotaDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1723,7 +1719,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
           },
           child: const Text('Não',
           style: TextStyle(fontSize: 20, color: Colors.blue,)),
@@ -1740,7 +1736,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         child: TextButton(
           onPressed: () async {
             _stopLocationTracking();
-            Navigator.pop(this.context);
+            Navigator.pop(context);
             await atividadesPageController.concluirRota();
             atividadesPageController.showMessage = false;
             setState(() {});
@@ -1754,7 +1750,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openPapelHidrossensivelDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1790,7 +1786,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
 
             _openJustificarPapelHidrossensivelDialog();
           },
@@ -1810,7 +1806,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
           onPressed: () async {
             _startCamera();
             setState(() {});
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
           },
           child: const Text('Sim', 
           style: TextStyle(fontSize: 20, color: Colors.blue,)),
@@ -1821,7 +1817,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openJustificarPapelHidrossensivelDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return const JustificarPapelHidrossensivelWidget();
@@ -1898,7 +1894,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openConfirmarConcluirFotoDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1934,7 +1930,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
           },
           child: const Text('Não',
           style: TextStyle(fontSize: 20, color: Colors.blue,)),
@@ -1962,7 +1958,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
             setState(() {});
             await atividadesPageController.concluirFoto();
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             _openConcluirDialog();
           },
           child: const Text('Sim',
@@ -1974,7 +1970,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openConfirmarConcluirSemFotoDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -2010,7 +2006,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
           },
           child: const Text('Não',
           style: TextStyle(fontSize: 20, color: Colors.blue)),
@@ -2026,7 +2022,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: rightButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             _openJustificarPapelHidrossensivelDialog();
           },
           child: const Text('Sim',
@@ -2038,7 +2034,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   _openConcluirDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -2113,7 +2109,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
           onPressed: () async {
             atividadesPageController
                 .setComentario(_comentarioController.text.trim());
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             _openSendAtividadeDialog();
           },
           child: const Text('Enviar',
@@ -2126,7 +2122,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
   _openSendAtividadeDialog() {
     atividadesPageController.sendDialogStatus = SendDialogStatus.enviando;
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return StatefulBuilder(builder: (context, setState) {
@@ -2137,7 +2133,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
       },
     ).then((value) {
       _stopLocationTracking();
-      Navigator.of(this.context).pop(false);
+      Navigator.of(context).pop(false);
     });
   }
 
@@ -2146,7 +2142,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
     atividadesPageController.startScanDevices();
 
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return StatefulBuilder(builder: (context, setState) {
@@ -2185,7 +2181,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
   late StateSetter deviceSyncDialogSetState;
   Future<void> _showDeviceSyncProgressDialog() async {
     showDialog<void>(
-      context: this.context,
+      context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return PopScope(
@@ -2258,7 +2254,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: rightButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             syncDeviceData();
           },
           child: const Text('Tentar Novamente',
@@ -2275,7 +2271,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             if (atividadesPageController.configurararAtividadeAplicacao) {
               _openFluxometroDialog();
             }
@@ -2295,7 +2291,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
         decoration: oneButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             if (atividadesPageController.configurararAtividadeAplicacao) {
               _openEstacaoDialog();
             }
@@ -2525,7 +2521,7 @@ class _AplicacaoDetailPageState extends State<AplicacaoDetailPage> {
 
   Future<void> _showAlertDialog(String title, String message) async {
     showDialog<void>(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (context) {
         return AlertDialog(

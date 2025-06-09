@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/common/entities.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 import 'package:image/image.dart' as imglib;
 
-import 'package:arbomonitor/modules/di/di.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/entities.dart';
+import 'package:spraymax/modules/di/di.dart';
+import 'package:spraymax/modules/armadilhaOvo/entities.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:signature/signature.dart';
 

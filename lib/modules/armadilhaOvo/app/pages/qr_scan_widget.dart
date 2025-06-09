@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:arbomonitor/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -164,6 +163,7 @@ class _QrScanWidgetState extends State<QrScanWidget> {
             if (qrText.isEmpty) return;
 
             await armadilhasOvoPageController.setQRCode(tipoQR, qrText);
+            if (!mounted) return;
             Navigator.of(context).pop(false);
             Navigator.of(context).pop(false);
             widget.refreshParent();

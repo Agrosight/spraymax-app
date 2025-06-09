@@ -2,13 +2,13 @@
 
 // import 'dart:typed_data';
 
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/vistoria_wizard_page.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
-// import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/vistoria_wizard_page.dart';
+import 'package:spraymax/modules/common/entities.dart';
+// import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
 // import 'package:flutter/services.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' as mapbox;
@@ -17,7 +17,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 
-import 'package:arbomonitor/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
 
 class VistoriaMapPage extends StatefulWidget {
   final Function() refreshParent;
@@ -106,7 +106,7 @@ class _VistoriaMapPageState extends State<VistoriaMapPage> {
   _appBarLeading() {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
-      color: primaryColor,
+      color: CustomColor.primaryColor,
       onPressed: () async {
         _stopLocationTracking();
         vistoriasPageController.loadVistorias();

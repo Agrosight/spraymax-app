@@ -1,5 +1,5 @@
-import 'package:arbomonitor/modules/common/repositories.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
+import 'package:spraymax/modules/common/repositories.dart';
+import 'package:spraymax/modules/common/entities.dart';
 
 class FetchTipoPropriedadeUseCase {
   CommonRepository commonRepository;

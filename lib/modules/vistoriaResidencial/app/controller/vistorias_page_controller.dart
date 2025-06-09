@@ -1,16 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/common/errors.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
+import 'package:spraymax/modules/common/errors.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/common/entities.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 import 'package:image/image.dart' as imglib;
-
-import 'package:arbomonitor/modules/di/di.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
+import 'dart:developer';
+import 'package:spraymax/modules/di/di.dart';
+import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
 import 'package:path_provider/path_provider.dart';
 
 part 'vistorias_page_controller.g.dart';
@@ -285,19 +285,19 @@ abstract class VistoriasPageControllerBase with Store {
   }
 
   showVistoriasGroup() {
-    print("v" * 100);
-    print(listVistoriasGroup.length);
+    log("v" * 100);
+    log("${listVistoriasGroup.length}");
     for (VistoriaGroupEndereco vistoriaGroupEndereco in listVistoriasGroup) {
-      print("i" * 100);
-      print(vistoriaGroupEndereco.endereco.id);
-      print(vistoriaGroupEndereco.endereco.rua);
-      print(vistoriaGroupEndereco.endereco.numero);
-      print(vistoriaGroupEndereco.vistorias.length);
+      log("i" * 100);
+      log("${vistoriaGroupEndereco.endereco.id}");
+      log(vistoriaGroupEndereco.endereco.rua);
+      log(vistoriaGroupEndereco.endereco.numero);
+      log("${vistoriaGroupEndereco.vistorias.length}");
       for (Vistoria vistoria in vistoriaGroupEndereco.vistorias) {
-        print("-" * 100);
-        print(vistoria.id);
-        print(vistoria.complemento);
-        print(vistoria.dataVistoria);
+        log("-" * 100);
+        log("${vistoria.id}");
+        log(vistoria.complemento);
+        log(vistoria.dataVistoria);
       }
     }
   }

@@ -1,4 +1,4 @@
-package br.com.farmgo.arbomonitor
+package br.com.farmgo.spraymax
 
 import android.app.ActivityOptions
 import android.app.admin.DeviceAdminReceiver
@@ -9,14 +9,14 @@ import android.os.Build
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.UserManager
-import br.com.farmgo.arbomonitor.MainActivity
+import br.com.farmgo.spraymax.MainActivity
 
-class ArboMonitorAdmRcvr : DeviceAdminReceiver() {
-  private val PKG = "br.com.farmgo.arbomonitor"
+class SprayMaxAdmRcvr : DeviceAdminReceiver() {
+  private val PKG = "br.com.farmgo.spraymax"
   private val options = ActivityOptions.makeBasic()
 
   override fun onProfileProvisioningComplete(context: Context, intent: Intent) {
-    println("D: ArboMonitorAdmRcvr.onProfileProvisioningComplete()")
+    println("D: SprayMaxAdmRcvr.onProfileProvisioningComplete()")
     val dpm = context.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
     val componentName = getWho(context)
     dpm.setProfileName(componentName, context.getString(R.string.device_admin))
@@ -26,7 +26,7 @@ class ArboMonitorAdmRcvr : DeviceAdminReceiver() {
   }
 
   override fun onReceive(context: Context, intent: Intent) {
-    println("D: ArboMonitorAdmRcvr.onReceive(): context = $context | intent = $intent")
+    println("D: SprayMaxAdmRcvr.onReceive(): context = $context | intent = $intent")
     val filter = IntentFilter(Intent.ACTION_MAIN)
     filter.addCategory(Intent.CATEGORY_HOME)
     filter.addCategory(Intent.CATEGORY_DEFAULT)
@@ -34,11 +34,11 @@ class ArboMonitorAdmRcvr : DeviceAdminReceiver() {
     val dpm = context.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
     val adminName = getWho(context)
     if (!dpm.isDeviceOwnerApp(PKG)){
-      println("D: ArboMonitorAdmRcvr.onReceive: isDeviceOwnerApp = false")
+      println("D: SprayMaxAdmRcvr.onReceive: isDeviceOwnerApp = false")
       return
     }
     else {
-      println("D: ArboMonitorAdmRcvr.onReceive: isDeviceOwnerApp = true")
+      println("D: SprayMaxAdmRcvr.onReceive: isDeviceOwnerApp = true")
     }
     dpm.addPersistentPreferredActivity(adminName, filter, activity)
     dpm.setLockTaskPackages(adminName, arrayOf(
@@ -98,7 +98,7 @@ class ArboMonitorAdmRcvr : DeviceAdminReceiver() {
   }
   
   fun setDebug(context: Context) {
-    println("D: ArboMonitorAdmRcvr.setDebug(): context = $context")
+    println("D: SprayMaxAdmRcvr.setDebug(): context = $context")
     val dpm : DevicePolicyManager = context.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
     val adminName = getWho(context)
     dpm.clearUserRestriction(adminName, UserManager.DISALLOW_ADD_PRIVATE_PROFILE)

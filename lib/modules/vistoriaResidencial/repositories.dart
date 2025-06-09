@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:arbomonitor/modules/common/utils.dart';
+import 'package:spraymax/modules/common/utils.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
 
 class VistoriaRepository {
   VistoriaRepository();

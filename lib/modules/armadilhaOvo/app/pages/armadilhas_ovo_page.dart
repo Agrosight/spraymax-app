@@ -2,13 +2,14 @@
 
 import 'dart:async';
 
-import 'package:arbomonitor/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/armadilha_ovo_info.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/armadilha_ovo_vistoria.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/remove_armadilha_ovo_dialog.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/entities.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/armadilha_ovo_info.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/armadilha_ovo_vistoria.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/remove_armadilha_ovo_dialog.dart';
+import 'package:spraymax/modules/armadilhaOvo/entities.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/common/entities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -18,13 +19,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import 'package:arbomonitor/modules/appConfig/app_config.dart';
-import 'package:arbomonitor/modules/auth/app/pages/loginPage/login_page.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/menu/app/pages/side_menu.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/armadilha_ovo_map_page.dart';
-// import 'package:arbomonitor/modules/armadilhaOvo/entities.dart';
+import 'package:spraymax/modules/appConfig/app_config.dart';
+import 'package:spraymax/modules/auth/app/pages/loginPage/login_page.dart';
+import 'package:spraymax/modules/common/consts.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/menu/app/pages/side_menu.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/armadilha_ovo_map_page.dart';
+// import 'package:spraymax/modules/armadilhaOvo/entities.dart';
 
 class ArmadilhasOvoPage extends StatefulWidget {
   const ArmadilhasOvoPage({super.key});
@@ -397,7 +398,7 @@ class _ArmadilhasOvoPageState extends State<ArmadilhasOvoPage> {
         CupertinoActionSheetAction(
           child: Text(
             "Informações",
-            style: TextStyle(color: primaryColor),
+            style: TextStyle(color: CustomColor.primaryColor,),
           ),
           onPressed: () {
             Navigator.pop(context, "Info");
@@ -406,7 +407,7 @@ class _ArmadilhasOvoPageState extends State<ArmadilhasOvoPage> {
         CupertinoActionSheetAction(
           child: Text(
             "Vistoria",
-            style: TextStyle(color: primaryColor),
+            style: TextStyle(color: CustomColor.primaryColor,),
           ),
           onPressed: () {
             Navigator.pop(context, "Visit");
@@ -425,7 +426,7 @@ class _ArmadilhasOvoPageState extends State<ArmadilhasOvoPage> {
       cancelButton: CupertinoActionSheetAction(
         child: Text(
           "Cancelar",
-          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+          style: TextStyle(color: CustomColor.primaryColor, fontWeight: FontWeight.bold),
         ),
         onPressed: () {
           Navigator.pop(context);

@@ -1,10 +1,10 @@
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:provider/provider.dart';
-// import 'package:arbomonitor/modules/common/consts.dart';
+// import 'package:spraymax/modules/common/consts.dart';
 
 class BluetoothWidget extends StatefulWidget {
   const BluetoothWidget({super.key});

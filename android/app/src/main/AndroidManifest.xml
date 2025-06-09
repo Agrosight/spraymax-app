@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.farmgo.arbomonitor">    
+    package="br.com.farmgo.spraymax">    
     <uses-sdk android:minSdkVersion="29"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES" />
@@ -47,7 +47,7 @@
     <uses-feature android:name="android.hardware.touchscreen" android:required="true"/>
     <application
         android:name="${applicationName}"
-        android:label="ArboMonitor"
+        android:label="SprayMax"
         android:icon="@mipmap/launcher_icon"
         android:testOnly="true">
         <activity
@@ -78,7 +78,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <receiver
-              android:name=".ArboMonitorAdmRcvr"
+              android:name=".SprayMaxAdmRcvr"
               android:label="@string/device_admin"
               android:description="@string/device_admin_description"
               android:permission="android.permission.BIND_DEVICE_ADMIN"

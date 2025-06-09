@@ -1,13 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:math';
-
-import 'package:arbomonitor/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/foto_view_armadilha_ovo_widget.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/foto_view_armadilha_ovo_widget.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
 import 'package:provider/provider.dart';
 
 class ArmadilhaOvoInfoPage extends StatefulWidget {
@@ -352,7 +349,7 @@ class _ArmadilhaOvoInfoPageState extends State<ArmadilhaOvoInfoPage> {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
+                color: Colors.grey.withValues(alpha:0.5),
                 spreadRadius: 2,
                 blurRadius: 7,
                 offset: const Offset(0, 3), // changes position of shadow

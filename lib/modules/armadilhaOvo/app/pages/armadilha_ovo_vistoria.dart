@@ -2,18 +2,16 @@
 
 import 'dart:io';
 
-import 'package:arbomonitor/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/analise_ovo.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/foto_view_analise_ovo_widget.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/remove_armadilha_ovo_dialog.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/send_vistoria_armadilha_dialog.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/entities.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/qr_scan_widget.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/analise_ovo.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/foto_view_analise_ovo_widget.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/remove_armadilha_ovo_dialog.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/send_vistoria_armadilha_dialog.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/qr_scan_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:http/http.dart';
-import 'package:path/path.dart';
+import 'package:spraymax/modules/common/consts.dart';
 import 'package:provider/provider.dart';
 
 import 'foto_widget.dart';
@@ -79,7 +77,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
   _appBarLeading() {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
-      color: primaryColor,
+      color: CustomColor.primaryColor,
       onPressed: () {
         // Navigator.of(context).pop();
         _showDescartarVistoriaArmadilhaOvoDialog();
@@ -149,12 +147,12 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
                 .vistoriaArmadilha.fotoAnalise.isEmpty) {
               if (paletaOption == -1) {
                 if (dropdownOcorrenciaValue == null) {
-                  showAlertDialog(this.context, "Dados incompletos",
+                  showAlertDialog(context, "Dados incompletos",
                       "Adicione uma análise, selecione o campo paleta sem ovos ou uma ocorrência para poder salvar a vistoria!");
                   return;
                 }
                 if (dropdownOcorrenciaValue! == "-1") {
-                  showAlertDialog(this.context, "Dados incompletos",
+                  showAlertDialog(context, "Dados incompletos",
                       "Adicione uma análise, selecione o campo paleta sem ovos ou uma ocorrência para poder salvar a vistoria!");
                   return;
                 }
@@ -260,7 +258,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
             //     backgroundColor: primaryColor, minimumSize: const Size(200, 40)),
             onPressed: () async {
               FocusManager.instance.primaryFocus?.unfocus();
-              Navigator.of(this.context).push(
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => Provider(
                     create: (context) => armadilhasOvoPageController,
@@ -303,7 +301,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         armadilhasOvoPageController.editAnaliseOvo = false,
         armadilhasOvoPageController.tempAnaliseOvoPath =
             armadilhasOvoPageController.vistoriaArmadilha.fotoAnalise,
-        Navigator.of(this.context).push(
+        Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => Provider(
               create: (context) => armadilhasOvoPageController,
@@ -367,7 +365,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
 
   _showRemoveAnaliseDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -418,7 +416,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         child: TextButton(
           onPressed: () {
             armadilhasOvoPageController.vistoriaArmadilha.fotoAnalise = "";
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             setState(() {});
           },
           child: const Text(
@@ -546,7 +544,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         ),
         onPressed: () {
           FocusManager.instance.primaryFocus?.unfocus();
-          Navigator.of(this.context).push(
+          Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => Provider(
                 create: (context) => armadilhasOvoPageController,
@@ -591,7 +589,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         armadilhasOvoPageController.qrSelecionado =
             QRArmadilhaOvoType.recipiente;
         // _showDialogSelectCreateQR();
-        Navigator.of(this.context).push(
+        Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => Provider(
               create: (context) => armadilhasOvoPageController,
@@ -655,7 +653,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
                 armadilhasOvoPageController.vistoriaArmadilha.recipiente,
                 style: TextStyle(
                 fontSize: 20,
-                color: Colors.grey.withOpacity(0.7),
+                color: Colors.grey.withValues(alpha:0.7),
                 ),
               ),
               ),
@@ -732,7 +730,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         armadilhasOvoPageController.qrSelecionado = QRArmadilhaOvoType.paleta;
 
         // _showDialogSelectCreateQR();
-        Navigator.of(this.context).push(
+        Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => Provider(
               create: (context) => armadilhasOvoPageController,
@@ -796,7 +794,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
                 armadilhasOvoPageController.vistoriaArmadilha.paleta,
                 style: TextStyle(
                 fontSize: 20,
-                color: Colors.grey.withOpacity(0.7),
+                color: Colors.grey.withValues(alpha:0.7),
                 ),
               ),
               ),
@@ -814,7 +812,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
   _showEditQRDialog(String tipo) {
     _editQRController.text = armadilhasOvoPageController.getQRTextByTipo(tipo);
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -855,7 +853,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
               return;
             }
             armadilhasOvoPageController.setQRCode(tipo, _editQRController.text.trim());
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             setState(() {});
           },
           child: const Text(
@@ -880,7 +878,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
 
   _showRemoveQRDialog(String tipo) {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -933,7 +931,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         child: TextButton(
           onPressed: () {
             armadilhasOvoPageController.removeQRCode(tipo);
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             setState(() {});
           },
           child: const Text(
@@ -979,7 +977,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () async {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
           },
           child: Text(
             "Cancelar",
@@ -994,7 +992,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
 
   _showEnviarVistoriaArmadilhaDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1051,7 +1049,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         decoration: rightButtonDecoration(),
         child: TextButton(
           onPressed: () {
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             _setDadosVistoriaArmadilha();
             _openSendVistoriaArmadilhaDialog();
             setState(() {});
@@ -1083,7 +1081,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
   _openSendVistoriaArmadilhaDialog() {
     armadilhasOvoPageController.sendDialogStatus = SendDialogStatus.enviando;
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return StatefulBuilder(builder: (context, setState) {
@@ -1096,14 +1094,14 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
       if (armadilhasOvoPageController.sendDialogStatus ==
           SendDialogStatus.concluido) {
         widget.refreshParent();
-        Navigator.of(this.context).pop(false);
+        Navigator.of(context).pop(false);
       }
     });
   }
 
   _showRemoverArmadilhaDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1157,7 +1155,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
             if (armadilhasOvoPageController.sendVitoriaBeforeRemoveArmadiha) {
               _setDadosVistoriaArmadilha();
             }
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
             _openRemoveArmadilhaOvoDialog();
             setState(() {});
           },
@@ -1174,7 +1172,7 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
     armadilhasOvoPageController.sendDialogStatus = SendDialogStatus.enviando;
     armadilhasOvoPageController.isVistoriaSendSuccessfull = false;
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return StatefulBuilder(builder: (context, setState) {
@@ -1187,14 +1185,14 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
       if (armadilhasOvoPageController.sendDialogStatus ==
           SendDialogStatus.concluido) {
         widget.refreshParent();
-        Navigator.of(this.context).pop(false);
+        Navigator.of(context).pop(false);
       }
     });
   }
 
   _showDescartarVistoriaArmadilhaOvoDialog() {
     showDialog(
-      context: this.context,
+      context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -1244,8 +1242,8 @@ class _ArmadilhaOvoVistoriaPageState extends State<ArmadilhaOvoVistoriaPage> {
         decoration: rightButtonDecoration(),
         child: TextButton(
           onPressed: () {
-            Navigator.of(this.context).pop(false);
-            Navigator.of(this.context).pop(false);
+            Navigator.of(context).pop(false);
+            Navigator.of(context).pop(false);
             setState(() {});
           },
           child: const Text(

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
-import 'package:arbomonitor/modules/common/errors.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
+import 'package:spraymax/modules/common/errors.dart';
+import 'package:spraymax/modules/common/utils.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -14,9 +14,9 @@ import 'package:image/image.dart' as imglib;
 
 import 'package:geolocator/geolocator.dart';
 
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/di/di.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
+import 'package:spraymax/modules/di/di.dart';
 
 part 'aplicacoes_page_controller.g.dart';
 

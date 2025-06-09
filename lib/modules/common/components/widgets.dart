@@ -1,11 +1,10 @@
 import 'dart:io';
 
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/entities.dart';
-// import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/common/utils.dart' as utils;
-import 'package:arbomonitor/modules/di/di.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/armadilhaOvo/entities.dart';
+// import 'package:spraymax/modules/common/consts.dart';
+import 'package:spraymax/modules/common/utils.dart' as utils;
+import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -222,7 +221,7 @@ Widget textInput({
                   style: TextStyle(fontSize: fontSize ?? 16, color: fontColor),
 
                   minLines: autoGrow ? (minLines ?? 1) : null,
-                  maxLines: autoGrow ? (maxLines ?? null) : 1,
+                  maxLines: autoGrow ? maxLines : 1,
                   expands: !autoGrow && height != null,
                   textAlignVertical: autoGrow
                       ? textAlignVertical ?? TextAlignVertical.center
@@ -964,20 +963,20 @@ Widget _buildStatusTag(List<Vistoria> vistorias, double heightTag) {
   String text;
   Color color;
 
-  String _pluralize(String singular, String plural, int count) {
+  String pluralize(String singular, String plural, int count) {
     return count == 1 ? singular : plural;
   }
 
   if (hasFechado) {
-    text = "$hasFechadoCount ${_pluralize("FECHADO", "FECHADOS", hasFechadoCount)}\n"
-           "$totalFocos ${_pluralize("FOCO", "FOCOS", totalFocos)}";
+    text = "$hasFechadoCount ${pluralize("FECHADO", "FECHADOS", hasFechadoCount)}\n"
+           "$totalFocos ${pluralize("FOCO", "FOCOS", totalFocos)}";
     color = const Color.fromRGBO(255, 199, 32, 0.8);
   } else if (hasRecusado) {
-    text = "$hasRecusadoCount ${_pluralize("RECUSADO", "RECUSADOS", hasRecusadoCount)}\n"
-           "$totalFocos ${_pluralize("FOCO", "FOCOS", totalFocos)}";
+    text = "$hasRecusadoCount ${pluralize("RECUSADO", "RECUSADOS", hasRecusadoCount)}\n"
+           "$totalFocos ${pluralize("FOCO", "FOCOS", totalFocos)}";
     color = const Color.fromRGBO(255, 199, 32, 0.8);
   } else if (totalFocos > 0) {
-    text = "$totalFocos ${_pluralize("FOCO", "FOCOS", totalFocos)}";
+    text = "$totalFocos ${pluralize("FOCO", "FOCOS", totalFocos)}";
     color = const Color.fromRGBO(255, 93, 85, 0.8);
   } else {
     text = "SEM FOCO";
@@ -1027,7 +1026,7 @@ class AplicacaoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final String titulo = atividade.activity.field.name;
 
-    final String cidade_estado = atividade.activity.field.organizacao.name;
+    final String cidadeEstado = atividade.activity.field.organizacao.name;
     final String ciclos = "Ciclos: ${atividade.executedCycles}/${atividade.totalCycles}";
     // final String subtitulo = "$uf\n $ciclos";
 
@@ -1069,7 +1068,7 @@ class AplicacaoCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            cidade_estado,
+                            cidadeEstado,
                             style: const TextStyle(
                             fontSize: 12,
                             color: Colors.grey,

@@ -1,11 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/armadilha_ovo_wizard_page.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/armadilha_ovo_wizard_page.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/common/entities.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' as mapbox;
 import 'package:provider/provider.dart';
@@ -13,7 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 
-import 'package:arbomonitor/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
 
 class ArmadilhaOvoMapPage extends StatefulWidget {
   final Function() refreshParent;

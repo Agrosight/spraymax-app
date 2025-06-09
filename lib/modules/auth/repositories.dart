@@ -1,7 +1,7 @@
-import 'package:arbomonitor/modules/menu/entities.dart';
+import 'package:spraymax/modules/menu/entities.dart';
 import 'package:hive/hive.dart';
-import 'package:arbomonitor/modules/auth/entities.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/auth/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;

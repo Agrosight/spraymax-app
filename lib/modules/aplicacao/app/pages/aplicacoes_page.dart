@@ -1,17 +1,17 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:arbomonitor/modules/aplicacao/app/pages/aplicacoes_pendentes_widget.dart';
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/aplicacoes_pendentes_widget.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/menu/app/pages/side_menu.dart';
-import 'package:arbomonitor/modules/auth/app/pages/loginPage/login_page.dart';
-import 'package:arbomonitor/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/menu/app/pages/side_menu.dart';
+import 'package:spraymax/modules/auth/app/pages/loginPage/login_page.dart';
+import 'package:spraymax/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
 
 import 'aplicacao_detail_page.dart';
 

@@ -1,14 +1,15 @@
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
-import 'package:arbomonitor/modules/aplicacao/app/pages/aplicacao_detail_page.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
+import 'package:spraymax/modules/aplicacao/app/pages/aplicacao_detail_page.dart';
+import 'package:spraymax/modules/common/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 // import 'package:loader_overlay/loader_overlay.dart';
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
 
 class AplicacoesPendentesWidget extends StatefulWidget {
   const AplicacoesPendentesWidget({super.key});
@@ -400,7 +401,7 @@ class _AplicacoesPendentesWidgetState extends State<AplicacoesPendentesWidget> {
           child: Text(
             "Informações",
             // style: TextStyle(color: Colors.blue),
-            style: TextStyle(color: primaryColor),
+            style: TextStyle(color: CustomColor.primaryColor,),
           ),
           onPressed: () {
             Navigator.pop(context, "Info");
@@ -409,7 +410,7 @@ class _AplicacoesPendentesWidgetState extends State<AplicacoesPendentesWidget> {
         CupertinoActionSheetAction(
           child: Text(
             "Iniciar",
-            style: TextStyle(color: primaryColor),
+            style: TextStyle(color: CustomColor.primaryColor,),
           ),
           onPressed: () {
             Navigator.pop(context, "Start");
@@ -419,7 +420,7 @@ class _AplicacoesPendentesWidgetState extends State<AplicacoesPendentesWidget> {
       cancelButton: CupertinoActionSheetAction(
         child: Text(
           "Cancelar",
-          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+          style: TextStyle(color: CustomColor.primaryColor, fontWeight: FontWeight.bold),
         ),
         onPressed: () {
           Navigator.pop(context);

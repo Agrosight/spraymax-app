@@ -1,3 +1,4 @@
+import 'package:spraymax/modules/common/collor.dart';
 import 'package:flutter/material.dart';
 
 class EsqueceuSenhaWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class EsqueceuSenhaWidget extends StatelessWidget {
       },
       child: const Text('Esqueceu a senha?',
           style: TextStyle(
-            color: Colors.black45,
+            color: CustomColor.linkColor,
           )),
     );
   }

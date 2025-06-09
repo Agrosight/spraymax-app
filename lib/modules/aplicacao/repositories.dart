@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/common/errors.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
+import 'package:spraymax/modules/common/errors.dart';
+import 'package:spraymax/modules/common/utils.dart';
 
 class AplicacaoRepository {
   Future<Box<dynamic>> syncDB;
@@ -256,7 +256,7 @@ class AplicacaoRepository {
         scheme: httpSheme,
         host: urlSync,
         port: port,
-        path: 'arbomonitor/api-reset-password/');
+        path: 'spraymax/api-reset-password/');
     try {
       var response = await http.post(
         url,

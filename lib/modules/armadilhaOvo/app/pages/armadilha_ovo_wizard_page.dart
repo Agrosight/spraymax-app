@@ -1,24 +1,23 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:arbomonitor/icons/my_flutter_app_icons.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/assinatura_landsape_page.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/foto_view_armadilha_ovo_widget.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/foto_widget.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/qr_scan_widget.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/send_armadilha_ovo_dialog.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
+import 'package:spraymax/icons/my_flutter_app_icons.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/assinatura_landsape_page.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/foto_view_armadilha_ovo_widget.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/foto_widget.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/qr_scan_widget.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/send_armadilha_ovo_dialog.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/common/entities.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/common/consts.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ArmadilhaOvoWizardPage extends StatefulWidget {
@@ -156,7 +155,7 @@ class _ArmadilhaOvoWizardPageState extends State<ArmadilhaOvoWizardPage> {
   _appBarLeading() {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
-      color: primaryColor,
+      color: CustomColor.primaryColor,
       onPressed: () async {
         _showDescartarArmadilhaOvoDialog();
       },
@@ -562,7 +561,7 @@ class _ArmadilhaOvoWizardPageState extends State<ArmadilhaOvoWizardPage> {
           text: "S/N",
           activeColor: _numeroController.text.trim().isEmpty
               ? Colors.blue
-              : Colors.grey.withOpacity(0.4),
+              : Colors.grey.withValues(alpha:0.4),
         ),
       ],
     );
@@ -599,7 +598,7 @@ class _ArmadilhaOvoWizardPageState extends State<ArmadilhaOvoWizardPage> {
               : textInput(
                 controller: _numeroController,
                 readOnly: true,
-                fontColor: Colors.grey.withOpacity(0.4),
+                fontColor: Colors.grey.withValues(alpha:0.4),
                 hintText: "Número",
                 fontSize: 18,
                 onFieldSubmitted: (value) async => {

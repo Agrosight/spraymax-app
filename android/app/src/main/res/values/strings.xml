@@ -1,6 +1,6 @@
 <resources>
-  <string name="device_admin">ArboMonitor Device Admin</string>
+  <string name="device_admin">SprayMax Device Admin</string>
   <string name="device_admin_description">
-    Permitir que o app ArboMonitor controle o dispositivo
+    Permitir que o app SprayMax controle o dispositivo
   </string>
 </resources>

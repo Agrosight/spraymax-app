@@ -2,10 +2,11 @@
 
 import 'dart:async';
 
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/vistoria_info.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/vistorias_group_list_dialog.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/common/entities.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/vistoria_info.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/vistorias_group_list_dialog.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -15,14 +16,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import 'package:arbomonitor/modules/appConfig/app_config.dart';
-import 'package:arbomonitor/modules/auth/app/pages/loginPage/login_page.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/menu/app/pages/side_menu.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/vistoria_map_page.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
+import 'package:spraymax/modules/appConfig/app_config.dart';
+import 'package:spraymax/modules/auth/app/pages/loginPage/login_page.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/menu/app/pages/side_menu.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/vistoria_map_page.dart';
+import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
 
 class VistoriasPage extends StatefulWidget {
   const VistoriasPage({super.key});
@@ -303,7 +303,7 @@ class _VistoriasPageState extends State<VistoriasPage> {
               color: Colors.grey,
               size: 30,
             ),
-            color: primaryColor,
+            color: CustomColor.primaryColor,
             onPressed: () async {
               context.loaderOverlay.show();
               bool permission = (await Permission.location.request()) ==

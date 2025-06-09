@@ -1,7 +1,7 @@
-import 'package:arbomonitor/modules/common/errors.dart';
-import 'package:arbomonitor/modules/aplicacao/repositories.dart';
-import 'package:arbomonitor/modules/aplicacao/entities.dart';
-import 'package:arbomonitor/modules/common/utils.dart';
+import 'package:spraymax/modules/common/errors.dart';
+import 'package:spraymax/modules/aplicacao/repositories.dart';
+import 'package:spraymax/modules/aplicacao/entities.dart';
+import 'package:spraymax/modules/common/utils.dart';
 
 class ChangePasswordUseCase {
   AplicacaoRepository aplicacaoRepository;

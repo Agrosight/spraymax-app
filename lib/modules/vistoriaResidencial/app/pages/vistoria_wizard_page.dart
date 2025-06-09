@@ -1,22 +1,22 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:arbomonitor/modules/common/utils.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/foco_page.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/send_vistoria_dialog.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
-import 'package:arbomonitor/modules/common/entities.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/utils.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/foco_page.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/send_vistoria_dialog.dart';
+import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
+import 'package:spraymax/modules/common/entities.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/common/consts.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:hive/hive.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-import 'package:arbomonitor/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
 
 class VistoriaWizardPage extends StatefulWidget {
   final Function() refreshParent;
@@ -378,7 +378,7 @@ class _VistoriaWizardPageState extends State<VistoriaWizardPage> {
             },
             icon: Icon(
               Icons.event_note,
-              color: primaryColor,
+              color: CustomColor.primaryColor,
             ),
           )
         ],
@@ -611,7 +611,7 @@ class _VistoriaWizardPageState extends State<VistoriaWizardPage> {
           text: "S/N",
           activeColor: _numeroController.text.trim().isEmpty
               ? Colors.blue
-              : Colors.grey.withOpacity(0.4),
+              : Colors.grey.withValues(alpha:.4),
         ),
       ],
     );
@@ -647,7 +647,7 @@ class _VistoriaWizardPageState extends State<VistoriaWizardPage> {
             controller: _numeroController,
             readOnly: true,
             enable: false,
-            fontColor: Colors.grey.withOpacity(0.4),
+            fontColor: Colors.grey.withValues(alpha:0.4),
             hintText: "Número",
             fontSize: 18,
             onFieldSubmitted: (value) async => {
@@ -767,7 +767,8 @@ class _VistoriaWizardPageState extends State<VistoriaWizardPage> {
                       value: vistoria.codigo,
                       child: Text(vistoria.valor),
                     ))
-                .toList(),
+                    //TODO verificar se funciona sem o .toList, se funcionar retirar pois o Flutter avisa que é desnecessário
+                    //.toList(),
           ],
           onChanged: (value) {
             setState(() {

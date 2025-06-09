@@ -1,6 +1,6 @@
-import 'package:arbomonitor/modules/common/errors.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/repositories.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/entities.dart';
+import 'package:spraymax/modules/common/errors.dart';
+import 'package:spraymax/modules/armadilhaOvo/repositories.dart';
+import 'package:spraymax/modules/armadilhaOvo/entities.dart';
 
 class FetchArmadilhasOvoUseCase {
   ArmadilhaOvoRepository armadilhaOvoRepository;

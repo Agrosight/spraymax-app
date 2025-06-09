@@ -1,6 +1,6 @@
-import 'package:arbomonitor/modules/common/errors.dart';
-import 'package:arbomonitor/modules/menu/repositories.dart';
-import 'package:arbomonitor/modules/menu/entities.dart';
+import 'package:spraymax/modules/common/errors.dart';
+import 'package:spraymax/modules/menu/repositories.dart';
+import 'package:spraymax/modules/menu/entities.dart';
 
 class FetchUserUseCase {
   MenuRepository menuRepository;

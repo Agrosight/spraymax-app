@@ -4,7 +4,7 @@
   },
   "applications": [
     {
-      "packageName": "br.com.farmgo.arbomonitor",
+      "packageName": "br.com.farmgo.spraymax",
       "installType": "KIOSK",
       "autoUpdateMode": "AUTO_UPDATE_HIGH_PRIORITY"
     }

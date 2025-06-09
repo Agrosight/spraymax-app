@@ -1,10 +1,9 @@
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/foto_view_widget.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/foto_view_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
 import 'package:provider/provider.dart';
 
-import 'package:arbomonitor/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
 
 class FocoViewPage extends StatefulWidget {
   const FocoViewPage({super.key});

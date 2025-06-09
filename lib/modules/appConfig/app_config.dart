@@ -1,4 +1,4 @@
-import 'package:arbomonitor/modules/menu/entities.dart';
+import 'package:spraymax/modules/menu/entities.dart';
 
 class AppConfig {
   bool aplicacaoPermission = false;

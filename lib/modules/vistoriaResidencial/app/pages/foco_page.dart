@@ -1,17 +1,17 @@
 // import 'dart:io';
 
-import 'package:arbomonitor/modules/common/components/widgets.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/foto_view_widget.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/foto_widget.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/app/pages/qr_scan_widget.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/entities.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/foto_view_widget.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/foto_widget.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/pages/qr_scan_widget.dart';
+import 'package:spraymax/modules/vistoriaResidencial/entities.dart';
 import 'package:flutter/material.dart';
-// import 'package:arbomonitor/modules/common/consts.dart';
+// import 'package:spraymax/modules/common/consts.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 
-import 'package:arbomonitor/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
+import 'package:spraymax/modules/vistoriaResidencial/app/controller/vistorias_page_controller.dart';
 
 class FocoPage extends StatefulWidget {
   final Function() refreshParent;

@@ -2,13 +2,13 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:arbomonitor/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/common/collor.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:arbomonitor/modules/common/consts.dart';
-import 'package:arbomonitor/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
+import 'package:spraymax/modules/aplicacao/app/controller/aplicacoes_page_controller.dart';
 
 class FotoHidrossenssivelViewWidget extends StatefulWidget {
   final Function() refreshParent;
@@ -63,7 +63,7 @@ class _FotoHidrossenssivelViewWidgetState
       centerTitle: true,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
-        color: primaryColor,
+        color: CustomColor.primaryColor,
         onPressed: () async {
           Navigator.of(context).pop();
         },

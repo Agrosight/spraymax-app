@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class LoadingStatus {
@@ -44,10 +43,6 @@ class DBEnum {
   static const String trabalhosAplicacaoConcluidos = "trabalhosConcluidos";
 }
 
-MaterialColor primaryColor = Colors.blue;
-// MaterialColor primaryColor = getMaterialColor(const Color.fromARGB(255, 0, 168, 89));
-// MaterialColor secondaryColor =
-//     getMaterialColor(const Color.fromARGB(255, 0, 168, 89));
 
 const String imageIconSideMenu = "assets/logo_horizontal.png";
 const String imageIconLogin = "assets/logo_vertical.png";

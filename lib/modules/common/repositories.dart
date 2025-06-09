@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:arbomonitor/modules/common/entities.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/common/entities.dart';
+import 'package:spraymax/modules/common/consts.dart';
 
 class CommonRepository {
   CommonRepository();

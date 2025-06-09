@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:arbomonitor/modules/di/di.dart';
-import 'package:arbomonitor/modules/menu/entities.dart';
+import 'package:spraymax/modules/di/di.dart';
+import 'package:spraymax/modules/menu/entities.dart';
 
 part 'perfil_page_controller.g.dart';
 

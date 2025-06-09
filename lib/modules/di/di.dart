@@ -1,25 +1,25 @@
-import 'package:arbomonitor/modules/armadilhaOvo/repositories.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/usecases.dart';
-import 'package:arbomonitor/modules/common/repositories.dart';
-import 'package:arbomonitor/modules/common/usecases.dart';
+import 'package:spraymax/modules/armadilhaOvo/repositories.dart';
+import 'package:spraymax/modules/armadilhaOvo/usecases.dart';
+import 'package:spraymax/modules/common/repositories.dart';
+import 'package:spraymax/modules/common/usecases.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:arbomonitor/modules/auth/repositories.dart';
-import 'package:arbomonitor/modules/auth/usecases.dart' as auth_use_case;
-import 'package:arbomonitor/modules/aplicacao/repositories.dart';
-import 'package:arbomonitor/modules/aplicacao/usecases.dart';
-import 'package:arbomonitor/modules/menu/repositories.dart';
-import 'package:arbomonitor/modules/menu/usecases.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/repositories.dart';
-import 'package:arbomonitor/modules/vistoriaResidencial/usecases.dart';
+import 'package:spraymax/modules/auth/repositories.dart';
+import 'package:spraymax/modules/auth/usecases.dart' as auth_use_case;
+import 'package:spraymax/modules/aplicacao/repositories.dart';
+import 'package:spraymax/modules/aplicacao/usecases.dart';
+import 'package:spraymax/modules/menu/repositories.dart';
+import 'package:spraymax/modules/menu/usecases.dart';
+import 'package:spraymax/modules/vistoriaResidencial/repositories.dart';
+import 'package:spraymax/modules/vistoriaResidencial/usecases.dart';
 
 Future<Box<dynamic>> dB = getHiveDB();
 
 Future<Box<dynamic>> getHiveDB() async {
   final directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
-  return Hive.openBox('projetoArboMonitor');
+  return Hive.openBox('projetoASprayMax');
 }
 
 final authRepository = AuthRepository(dB);

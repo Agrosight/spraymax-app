@@ -1,12 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 import 'dart:io';
 
-import 'package:arbomonitor/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
-import 'package:arbomonitor/modules/armadilhaOvo/app/pages/capture_foto_analise_ovo_dialog.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/pages/capture_foto_analise_ovo_dialog.dart';
+import 'package:spraymax/modules/common/collor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:arbomonitor/modules/common/consts.dart';
 
 class FotoViewAnaliseOvoWidget extends StatefulWidget {
   final Function() refreshParent;
@@ -57,7 +57,7 @@ class _FotoViewAnaliseOvoWidgetState extends State<FotoViewAnaliseOvoWidget> {
       centerTitle: true,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
-        color: primaryColor,
+        color: CustomColor.primaryColor,
         onPressed: () async {
           Navigator.of(context).pop();
         },

@@ -7,8 +7,8 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:signature/signature.dart';
 
-import 'package:arbomonitor/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
-import 'package:arbomonitor/modules/common/components/widgets.dart';
+import 'package:spraymax/modules/armadilhaOvo/app/controller/armadilhas_ovo_page_controller.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
 
 class AssinaturaLandscapeWidget extends StatefulWidget {
   final Function() refreshParent;

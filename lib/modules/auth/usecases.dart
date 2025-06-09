@@ -1,6 +1,6 @@
-import 'package:arbomonitor/modules/auth/repositories.dart';
-import 'package:arbomonitor/modules/auth/entities.dart';
-import 'package:arbomonitor/modules/menu/entities.dart';
+import 'package:spraymax/modules/auth/repositories.dart';
+import 'package:spraymax/modules/auth/entities.dart';
+import 'package:spraymax/modules/menu/entities.dart';
 
 class GetTokenUseCase {
   AuthRepository authRepository;

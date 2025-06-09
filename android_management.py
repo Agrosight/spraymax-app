@@ -92,7 +92,7 @@ def devices():
         print('    nonComplianceDetails:',d['nonComplianceDetails'])
       if ('applicationReports' in d):
         for a in d['applicationReports']:
-          if (a['packageName'] == 'br.com.farmgo.arbomonitor'):
+          if (a['packageName'] == 'br.com.farmgo.spraymax'):
             print('    Versão instalada: %s+%d' % (a['versionName'],a['versionCode']))
   else:
     print('Nenhum dispositivo provisionado.')

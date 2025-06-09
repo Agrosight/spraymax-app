@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/common/consts.dart';
 
 class IconWithNameWidget extends StatelessWidget {
   const IconWithNameWidget({super.key});

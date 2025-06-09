@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:arbomonitor/modules/common/consts.dart';
+import 'package:spraymax/modules/common/consts.dart';
 
 class BluetoothDeviceInfo {
   String name = "";

@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:arbomonitor/modules/di/di.dart';
-import 'package:arbomonitor/modules/menu/entities.dart';
+import 'package:spraymax/modules/di/di.dart';
+import 'package:spraymax/modules/menu/entities.dart';
 
 part 'side_menu_controller.g.dart';
 
