@@ -32,11 +32,14 @@ class _SideMenuState extends State<SideMenu> {
   late AppConfig appConfig;
 
   String menuSelecionado = '';
-  bool get isSelecionado => menuSelecionado == 'vistorias' ||
-      menuSelecionado == 'armadilhas' ||
-      menuSelecionado == 'aplicacoes' ||
-      menuSelecionado == 'perfil' ||
-      menuSelecionado == 'configuracoes';
+  // bool get isSelecionado => menuSelecionado == 'planejamentos' ||
+  //     menuSelecionado == 'analises' ||
+  //     menuSelecionado == 'calibracao' ||
+  //     menuSelecionado == 'sincronizacao' ||
+  //     menuSelecionado == 'perfil';
+      
+  //TODO carregar foto de perfil do usuário
+   String imgPerfil = "assets/perfil.png";
 
   @override
   Widget build(BuildContext context) {
@@ -45,16 +48,62 @@ class _SideMenuState extends State<SideMenu> {
       backgroundColor: Colors.white,
         child: Column(
       children: [
-        _drawerHeader(),
+        _drawerPerfil(),
         Expanded(
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              _drawerTileVistorias(),
-              _drawerTileArmadilhas(),
-              _drawerTileAplicacoes(),
-              _drawerTilePerfil(),
-              _drawerTileConfiguracoes(),
+              //TODO corrigir Permissão
+              if(appConfig.vistoriaResidencialPermission)
+              _drawerMenu(
+                'planejamentos',
+                 Icon(
+                  Symbols.calendar_month
+                ), 
+                'Planejamentos',
+                //TODO mudar para PlanejamentosPage
+                VistoriasPage()
+              ),
+              //TODO corrigir Permissão
+              if(appConfig.armadilhaOvoPermission)
+              _drawerMenu(
+                'analises',
+                 Icon(
+                  Symbols.water_drop
+                ), 
+                'Análises',
+                //TODO mudar para AnalisesPage
+                ArmadilhasOvoPage()
+              ),
+              //TODO corrigir Permissão
+              if(appConfig.aplicacaoPermission)
+              _drawerMenu(
+                'calibracao',
+                 Icon(
+                  Symbols.area_chart_rounded
+                ), 
+                'Calibrações',
+                //TODO mudar para CalibracoesPage
+                AplicacoesPage()
+              ),
+              _drawerMenu(
+                'sincronizacao',
+                 Icon(
+                  Symbols.sync
+                ), 
+                'Sincronização',
+                //TODO mudar para SiincronizacaoPage
+                PerfilPage()
+              ),
+              _drawerMenu(
+                'perfil',
+                 Icon(
+                  Symbols.settings_account_box
+                ), 
+                'Meu Perfil',
+                //TODO mudar para MeuPerfilPage
+                PerfilPage()
+              ),
             ],
           ),
         ),
@@ -64,174 +113,79 @@ class _SideMenuState extends State<SideMenu> {
     ));
   }
 
-  _drawerHeader() {
-    return DrawerHeader(
-      padding: EdgeInsets.zero,
-      child: Container(
-        padding: EdgeInsets.zero,
-        child: Center(
-          child: Column(
+
+
+  _drawerPerfil() {
+    return Padding(
+      padding: EdgeInsets.only(top: 60, bottom: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(8),
-                    height: 55,
-                    child: Image.asset(
-                      imageIconSideMenu,
-                      fit: BoxFit.contain,
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(8),
+                  height: 120,
+                  child: Image.asset(
+                    (imgPerfil != null && imgPerfil.isNotEmpty) ? imgPerfil : imagePerfil,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Observer(
+                      builder: (_) =>
+                        (sideMenuController.user.value.fullName.isEmpty)
+                          ? const Text("")
+                          : Text(
+                            utf8.decode(latin1.encode(sideMenuController.user.value.fullName)),
+                            // sideMenuController.user.value.fullName,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Observer(
-                        builder: (_) =>
-                            (sideMenuController.user.value.fullName.isEmpty)
-                                ? const Text("")
-                                : Text(
-                                    utf8.decode(latin1.encode(sideMenuController.user.value.fullName)),
-                                    // sideMenuController.user.value.fullName,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                      ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Observer(
+                      builder: (_) =>
+                        (sideMenuController.user.value.email.isEmpty)
+                        ? const Text("")
+                        : Text(
+                          sideMenuController.user.value.email,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                        ),
                     ),
                   ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Observer(
-                        builder: (_) =>
-                            (sideMenuController.user.value.email.isEmpty)
-                                ? const Text("")
-                                : Text(
-                                    sideMenuController.user.value.email,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+                ),
+              ],
+            ),
+          ],
       ),
     );
   }
 
-  _drawerTileAplicacoes() {
-    if (appConfig.aplicacaoPermission) {
-      return drawerMenuItem(
-        id: 'aplicacoes',
-        icon: const RotatedBox(
-          quarterTurns: 2,
-          child: Icon(Symbols.sprinkler),
-        ),
-        title: 'Aplicações',
-        onTap: () {
-          Navigator.of(context).pop();
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const AplicacoesPage()),
-          );
-        },
-      );
-    } else {
-      return const SizedBox();
-    }
-  }
-
-  _drawerTileArmadilhas() {
-    if (appConfig.armadilhaOvoPermission) {
-      return drawerMenuItem(
-        id: 'armadilhas',
-        icon: Icon(
-          Symbols.potted_plant
-        ),
-        title: 'Armadilhas',
-        onTap: () {
-          Navigator.of(context).pop();
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const ArmadilhasOvoPage()),
-          );
-        }
-      );
-    } else {
-      return const SizedBox();
-    }
-  }
-
-  _drawerTileVistorias() {
-    if (appConfig.vistoriaResidencialPermission) {
-      return drawerMenuItem(
-        id: 'vistorias',
-        icon: Icon(
-          Symbols.eye_tracking
-        ),
-        title: 'Vistorias',
-        onTap: () {
-          Navigator.of(context).pop();
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const VistoriasPage()),
-          );
-        }
-      );
-    } else {
-      return const SizedBox();
-    }
-  }
-
-  _drawerTilePerfil() {
-    return drawerMenuItem(
-      id: 'perfil', 
-      icon: Icon(
-        Icons.account_circle,
-      ),
-      title: 'Meu Perfil', 
-      onTap: () => {
-        Navigator.of(context).pop(),
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const PerfilPage()),
-        ),
-      },
-    );
-  }
-
-  _drawerTileConfiguracoes() {
-    return drawerMenuItem(
-      id: 'configuracoes', 
-      icon: Icon(
-        Icons.settings
-      ),
-      title: 'Configurações', 
-      onTap: () => {
-        Navigator.of(context).pop(),
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const ConfiguracoesPage()),
-        ),
-      },
-    );
-  }
 
   _drawerTileLogOut() {
     return ListTile(
@@ -381,25 +335,23 @@ class _SideMenuState extends State<SideMenu> {
     );
   }
 
-  Widget drawerMenuItem({
-    required String id,
-    required Widget icon,
-    required String title,
-    required VoidCallback onTap,
-  }) {
 
-    final isSelecionado = menuSelecionado == id;
-
-    return InkWell(
+  _drawerMenu(String id, Icon icon, String title, Widget page){
+    bool isSelected = menuSelecionado == id;
+      return InkWell(
       onTap: () {
         setState(() {
           menuSelecionado = id;
         });
-        onTap();
+        Navigator.of(context).pop();
+          Navigator.of(context).push(
+            
+            MaterialPageRoute(builder: (context) => page),
+          );
       },
       borderRadius: BorderRadius.circular(30),
       child: Container(
-        decoration: isSelecionado
+        decoration: isSelected
             ? BoxDecoration(
                 color: const Color(0xFFD7ECE8),
                 borderRadius: BorderRadius.circular(30),
@@ -415,8 +367,8 @@ class _SideMenuState extends State<SideMenu> {
               title,
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: isSelecionado? FontWeight.bold : FontWeight.normal,
-                color: isSelecionado ? Color.fromRGBO(1, 106, 92, 1) : Colors.grey[600],
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                color: isSelected ? Color.fromRGBO(1, 106, 92, 1) : Colors.grey[600],
               ),
             ),
           ],
@@ -425,3 +377,145 @@ class _SideMenuState extends State<SideMenu> {
     );
   }
 }
+
+//   Widget drawerMenuItem({
+//     required String id,
+//     required Widget icon,
+//     required String title,
+//     required VoidCallback onTap,
+//   }) {
+
+//     final isSelecionado = menuSelecionado == id;
+
+//     return InkWell(
+//       onTap: () {
+//         setState(() {
+//           menuSelecionado = id;
+//         });
+//         onTap();
+//       },
+//       borderRadius: BorderRadius.circular(30),
+//       child: Container(
+//         decoration: isSelecionado
+//             ? BoxDecoration(
+//                 color: const Color(0xFFD7ECE8),
+//                 borderRadius: BorderRadius.circular(30),
+//               )
+//             : null,
+//         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+//         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+//         child: Row(
+//           children: [
+//             icon,
+//             const SizedBox(width: 16),
+//             Text(
+//               title,
+//               style: TextStyle(
+//                 fontSize: 18,
+//                 fontWeight: isSelecionado? FontWeight.bold : FontWeight.normal,
+//                 color: isSelecionado ? Color.fromRGBO(1, 106, 92, 1) : Colors.grey[600],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+  //   _drawerTilePlanejamentos() {
+  //   if (appConfig.vistoriaResidencialPermission) {
+  //     return drawerMenuItem(
+  //       id: 'planejamentos',
+  //       icon: Icon(
+  //         Symbols.calendar_month
+  //       ),
+  //       title: 'Planejamentos',
+  //       onTap: () {
+  //         Navigator.of(context).pop();
+  //         Navigator.of(context).push(
+  //           //TODO mudar para PlanejamentosPage
+  //           MaterialPageRoute(builder: (context) => const VistoriasPage()),
+  //         );
+  //       }
+  //     );
+  //   } else {
+  //     return const SizedBox();
+  //   }
+  // }
+
+
+  // _drawerTileAnalises() {
+  //   if (appConfig.armadilhaOvoPermission) {
+  //     return drawerMenuItem(
+  //       id: 'analises',
+  //       icon: Icon(
+  //         Symbols.water_drop
+  //       ),
+  //       title: 'Análises',
+  //       onTap: () {
+  //         Navigator.of(context).pop();
+  //         Navigator.of(context).push(
+  //           //TODO mudar para AnalisesPage
+  //           MaterialPageRoute(builder: (context) => const ArmadilhasOvoPage()),
+  //         );
+  //       }
+  //     );
+  //   } else {
+  //     return const SizedBox();
+  //   }
+  // }
+
+  // _drawerTileCalibracoes() {
+  //   if (appConfig.aplicacaoPermission) {
+  //     return drawerMenuItem(
+  //       id: 'calibracao',
+  //       icon:  Icon(Symbols.area_chart_rounded),
+        
+  //       title: 'Calibrações',
+  //       onTap: () {
+  //         Navigator.of(context).pop();
+  //         Navigator.of(context).push(
+  //           //TODO mudar para CalibracoesPage
+  //           MaterialPageRoute(builder: (context) => const AplicacoesPage()),
+  //         );
+  //       },
+  //     );
+  //   } else {
+  //     return const SizedBox();
+  //   }
+  // }
+
+  // _drawerTileSincronizacao() {
+  //   return drawerMenuItem(
+  //     id: 'sincronizacao', 
+  //     icon: Icon(
+  //       Symbols.sync
+  //     ),
+  //     title: 'Sincronização', 
+  //     onTap: () => {
+  //       Navigator.of(context).pop(),
+  //       Navigator.of(context).push(
+  //         //TODO mudar para SiincronizacaoPage
+  //         MaterialPageRoute(builder: (context) => const PerfilPage()),
+  //       ),
+  //     },
+  //   );
+  // }
+
+  // _drawerTileMeuPerfil() {
+  //   return drawerMenuItem(
+  //     id: 'perfil', 
+  //     icon: Icon(
+  //       Symbols.settings_account_box
+  //     ),
+  //     title: 'Meu Perfil', 
+  //     onTap: () => {
+  //       Navigator.of(context).pop(),
+  //       Navigator.of(context).push(
+  //         //TODO mudar para MeuPerfilPage
+  //         MaterialPageRoute(builder: (context) => const ConfiguracoesPage()),
+  //       ),
+  //     },
+  //   );
+  // }
