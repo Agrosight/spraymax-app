@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:app_settings/app_settings.dart';
-import 'package:spraymax/modules/common/components/custom_text_form_field.dart';
+import 'package:spraymax/modules/menu/app/components/custom_text_form_field.dart';
 import 'package:spraymax/modules/common/components/function_button.dart';
 // import 'package:spraymax/modules/aplicacao/app/pages/atividades_page.dart';
 import 'package:spraymax/modules/menu/app/pages/home_page.dart';
