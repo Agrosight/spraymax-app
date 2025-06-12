@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:spraymax/modules/common/collor.dart';
 import 'package:spraymax/modules/common/components/custom_appbar.dart';
-import 'package:spraymax/modules/common/components/custom_text_input.dart';
-import 'package:spraymax/modules/common/components/function_button.dart';
-import 'package:spraymax/modules/common/components/widgets.dart';
 import 'package:spraymax/modules/menu/app/components/custom_phone_input.dart';
+import 'package:spraymax/modules/common/components/custom_text_input.dart';
+import 'package:spraymax/modules/common/components/widgets.dart';
 import 'package:spraymax/modules/menu/app/pages/side_menu.dart';
 import 'package:spraymax/modules/vistoriaResidencial/app/pages/vistorias_page.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +25,25 @@ class _PerfilPageState extends State<PerfilPage> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final newPasswordController = TextEditingController();
-  final currentPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  bool obscureNewPassword = true;
+  bool obscureConfirmPassword = true;
 
   String selectedCodeArea = "+55";
   bool accepted = false;
-
-
+  
+  final List<String> codeAreaList = [
+    "+55",
+    "+1",
+    "+44",
+    "+33",
+    "+49",
+    "+34",
+    "+39",
+    "+7",
+    "+81",
+    "+86",
+  ];
 
   final MaskTextInputFormatter phoneMaskFormatter = MaskTextInputFormatter(
       mask: '(##) #####-####',
@@ -58,35 +68,31 @@ class _PerfilPageState extends State<PerfilPage> {
 
 
   _formContainer() {
-    return 
-    Padding(padding: EdgeInsetsGeometry.symmetric(horizontal: 25),
-      child: Column(
-        children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _userAvatar(),
-                      const SizedBox(height: 10),
-                      _userName(),
-                    ],
-                  ),
-                  formInfoTitle(text: "Contatos", icon: Symbols.contact_mail_sharp, iconColor: Color.fromRGBO(1, 106, 92, 1)),
-                  _contatoSection(),
-                  formInfoTitle(text: "Segurança", icon: Symbols.lock_sharp, iconColor: Color.fromRGBO(1, 106, 92, 1)),
-                  _passwordSection(),
-                  _permissionsSection(),
-                ],
-              ),
+    return Column(
+      children: [
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.only(top: 40, bottom: 10, left: 30, right: 30),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _userAvatar(),
+                    const SizedBox(height: 10),
+                    _userName(),
+                  ],
+                ),
+                formInfoTitle(text: "Contatos", icon: Symbols.contact_mail_sharp, iconColor: Color.fromRGBO(1, 106, 92, 1)),
+                _contatoSection(),
+                formInfoTitle(text: "Alterar Senha", icon: Symbols.lock_sharp, iconColor: Color.fromRGBO(1, 106, 92, 1)),
+                _passwordSection(),
+              ],
             ),
           ),
-        ],
-      )
+        ),
+      ],
     );
   }
 
@@ -167,6 +173,8 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
+  
+
   _contatoSection() {
     return Container(
       padding: const EdgeInsets.all(10),
@@ -189,7 +197,6 @@ class _PerfilPageState extends State<PerfilPage> {
               });
             },
             phoneController: phoneController,
-            inputFormatters: [MaskTextInputFormatter(mask: '(##) #####-####', filter: {"#": RegExp(r'[0-9]')})],
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Campo obrigatório';
@@ -197,125 +204,81 @@ class _PerfilPageState extends State<PerfilPage> {
               return null;
             },
           ),
-          _checkboxSction()
+          Row(
+            children: [
+              Checkbox(
+                value: accepted,
+                onChanged: (bool? value) {
+                  setState(() {
+                    accepted = value ?? false;
+                  });
+                },
+              ),
+              const Expanded(
+                child: Text(
+                  "Aceito receber informações via WhatsApp",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
   }
 
-  _checkboxSction(){
-    return Row(
-      children: [
-        Checkbox(
-          value: accepted,
-          onChanged: (bool? value) {
-            setState(() {
-              accepted = value ?? false;
-            });
-          },
-          fillColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
-            if (states.contains(WidgetState.selected)) {
-              return CustomColor.primaryColor; 
-            }
-            return Colors.white; 
-          }),
-          side: const BorderSide(color: CustomColor.primaryColor, width: 2), 
-        ),
-        const Expanded(
-          child: Text(
-            "Aceito receber informações via WhatsApp",
-            style: TextStyle(fontSize: 16),
+  _passwordSection() {
+    return Container(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              textInput(
+                controller: newPasswordController,
+                hintText: "Nova Senha",
+                obscureText: obscureNewPassword,
+                readOnly: false,
+                enable: true,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    size: 24,
+                    obscureNewPassword ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      obscureNewPassword = !obscureNewPassword;
+                    });
+                  },
+                ),
+                validator: _passwordValidator(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+              ),
+              textInput(
+                controller: confirmPasswordController,
+                hintText: "Confirmar Senha",
+                obscureText: obscureConfirmPassword,
+                readOnly: false,
+                enable: true,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    size: 24,
+                    obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      obscureConfirmPassword = !obscureConfirmPassword;
+                    });
+                  },
+                ),
+                validator: _confirmPasswordValidator(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+              ),
+            ],
           ),
-        ),
-      ],
-    );
+        );
+      
+    
   }
-
-bool showPasswordFields = false;
-bool obscureCurrentPassword = true;
-bool obscureNewPassword = true;
-bool obscureConfirmPassword = true;
-
-Widget _passwordSection() {
-  return StatefulBuilder(
-    builder: (context, setState) {
-      return Column(
-        children: [
-          if (!showPasswordFields)
-          FunctionButton(
-            text: "Alterar Senha", 
-            onPressed: () {
-              setState(() {
-                showPasswordFields = true;
-                currentPasswordController.clear();
-                newPasswordController.clear();
-                confirmPasswordController.clear();
-              });
-            },
-          ),
-          if (showPasswordFields) ...[
-            EditableRoundedInput(
-              controller: currentPasswordController,
-              labelText: "Senha atual",
-              obscureText: obscureCurrentPassword,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Informe a senha atual";
-                }
-                return null;
-              },
-              readOnlyOverride: false,
-              suffixIcon: Icon(
-                obscureCurrentPassword ? Icons.visibility_off : Icons.visibility,
-              ),
-              onSuffixIconPressed: () {
-                setState(() {
-                  obscureCurrentPassword = !obscureCurrentPassword;
-                });
-              },
-            ),
-            const SizedBox(height: 16),
-            EditableRoundedInput(
-              controller: newPasswordController,
-              labelText: "Nova senha",
-              obscureText: obscureNewPassword,
-              validator: _passwordValidator(),
-              readOnlyOverride: false,
-              suffixIcon: Icon(
-                obscureNewPassword ? Icons.visibility_off : Icons.visibility,
-              ),
-              onSuffixIconPressed: () {
-                setState(() {
-                  obscureNewPassword = !obscureNewPassword;
-                });
-              },
-            ),
-            const SizedBox(height: 16),
-            EditableRoundedInput(
-              controller: confirmPasswordController,
-              labelText: "Confirmar nova senha",
-              obscureText: obscureConfirmPassword,
-              validator: _confirmPasswordValidator(),
-              readOnlyOverride: false,
-              suffixIcon: Icon(
-                obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
-              ),
-              onSuffixIconPressed: () {
-                setState(() {
-                  obscureConfirmPassword = !obscureConfirmPassword;
-                });
-              },
-            ),
-            
-          ],
-        ],
-      );
-    },
-  );
-}
-
-
-
 
   _passwordValidator() {
     return (String? value) {
@@ -375,19 +338,6 @@ Widget _passwordSection() {
       return null;
     };
   }
-
-  _permissionsSection(){
-  return Column(
-    children: [
-      FunctionButton(
-        text: "Permissões do aplicativo", 
-        //TODO: Implementar lógica para abrir as permissões do aplicativo
-        onPressed: () {},
-      ),
-    ],
-  );
-}
-
 
 //TODO Verificar se a função está funcionando corretamente
   bool hasPendingChanges() {
@@ -586,7 +536,8 @@ _bottomButtons() {
     return Expanded(
       child: Container(
         width: double.infinity,
-        decoration: rightButtonDecoration(),
+        //decoration: rightButtonDecoration(),
+        decoration: leftButtonDecoration(),
         child: TextButton(
           onPressed: () {
             if (perfilFormKey.currentState!.validate()) {

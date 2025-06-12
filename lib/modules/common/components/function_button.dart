@@ -21,7 +21,7 @@ class FunctionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double resolvedWidth = width ?? MediaQuery.of(context).size.width * 0.4;
-    final double resolvedHeight = width ?? MediaQuery.of(context).size.height * 0.05;
+    final double resolvedHeight = height ?? MediaQuery.of(context).size.height * 0.05;
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(

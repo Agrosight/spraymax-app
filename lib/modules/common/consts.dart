@@ -45,6 +45,7 @@ class DBEnum {
 
 
 const String imageIconSideMenu = "assets/logo_horizontal.png";
+const String imagePerfil = "assets/perfil.png";
 const String imageIconLogin = "assets/logo_vertical.png";
 // const String imageIcon = "assets/icon-transparent.png";
 const String imageLocalFoco = "assets/local_foco.png";

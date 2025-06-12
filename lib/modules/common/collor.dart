@@ -9,6 +9,7 @@ class CustomColor {
   static const Color errorColor = Color(0xFFFF5D55);
   static const Color linkColor = Color(0xFF0076FF);
   static const Color brown = Color(0xFF232323);
+  static const Color grey = Color(0xFFD9D9D9);
 
 
 static const MaterialColor colorLightPrimarySwatch = MaterialColor(
